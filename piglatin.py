@@ -15,6 +15,9 @@ class PigLatin:
         if self._starts_with_single_consonant():
             return self._handle_phrase_starting_single_consonant()
 
+        if self._starts_with_multiple_consonant():
+            return self._handle_phrase_starting_multiple_consonant()
+
     def _starts_with_vowel(self) -> bool:
         if self._phrase:
             # y is considered as consonant
@@ -63,3 +66,26 @@ class PigLatin:
         if self._phrase:
             if self._starts_with_single_consonant():
                 return self._phrase[1:] + self._phrase[0] + "ay"
+
+    def _starts_with_multiple_consonant(self):
+        if self._phrase:
+            if len(self._phrase) < 2:
+                return False
+            if self._is_consonant(self._phrase[0]) and self._is_consonant(
+                self._phrase[1]
+            ):
+                return True
+
+    def _handle_phrase_starting_multiple_consonant(self):
+        if self._phrase:
+            consonants = []
+            first_vowel = -1
+            for character in self._phrase:
+                if self._is_consonant(character):
+                    consonants.append(character)
+                    first_vowel += 1
+                else:
+                    break
+            first_vowel += 1
+            if first_vowel < len(self._phrase):
+                return self._phrase[first_vowel:] + "".join(consonants) + "ay"
