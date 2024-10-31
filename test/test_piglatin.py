@@ -17,9 +17,14 @@ class TestPigLatin(unittest.TestCase):
         translator_yaa = PigLatin("yaa")
         translator_yan = PigLatin("yan")
 
-        print(translator_nay.translate())
-        print(translator_yaa.translate())
-        print(translator_yan.translate())
         self.assertEqual(translator_nay.translate(), "yaynay")
         self.assertEqual(translator_yaa.translate(), "yaayay")
         self.assertEqual(translator_yan.translate(), "yanay")
+
+        translator_any = PigLatin("any")
+        translator_apple = PigLatin("apple")
+        translator_ask = PigLatin("ask")
+
+        self.assertEqual(translator_any.translate(), "anynay")
+        self.assertEqual(translator_apple.translate(), "appleyay")
+        self.assertEqual(translator_ask.translate(), "askay")
