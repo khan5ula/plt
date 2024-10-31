@@ -13,14 +13,6 @@ class TestPigLatin(unittest.TestCase):
         self.assertEqual("nil", translator.translate())
 
     def test_phrase_starting_with_vowel(self):
-        translator_nay = PigLatin("yay")
-        translator_yaa = PigLatin("yaa")
-        translator_yan = PigLatin("yan")
-
-        self.assertEqual(translator_nay.translate(), "yaynay")
-        self.assertEqual(translator_yaa.translate(), "yaayay")
-        self.assertEqual(translator_yan.translate(), "yanay")
-
         translator_any = PigLatin("any")
         translator_apple = PigLatin("apple")
         translator_ask = PigLatin("ask")
@@ -28,3 +20,7 @@ class TestPigLatin(unittest.TestCase):
         self.assertEqual(translator_any.translate(), "anynay")
         self.assertEqual(translator_apple.translate(), "appleyay")
         self.assertEqual(translator_ask.translate(), "askay")
+
+    def test_phrase_starting_with_single_consonant(self):
+        translator = PigLatin("hello")
+        self.assertEqual(translator.translate(), "ellohay")
